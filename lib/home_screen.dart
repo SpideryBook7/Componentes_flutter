@@ -14,26 +14,28 @@ class HomeScreen extends StatelessWidget {
       body: ListView(
         children: [
           ListTile(
-            leading: const Icon(Icons.account_circle_outlined),
+            leading: const Icon(Icons.input_rounded),
             title: Text(
-              'Hellow ',
+              'Entradas ',
               style: Theme.of(context).textTheme.headlineLarge,
             ),
-            subtitle: const Text('23-23-23 - Elein'),
+            subtitle: const Text('Deferent widgets'),
+            trailing: const Icon(Icons.view_headline),
+          ),
+          const Divider(),
+          ListTile(
+            leading: const Icon(Icons.place),
+            title: Text('ListView.builder ', style: Theme.of(context).textTheme.headlineLarge,
+            ),
+            subtitle: const Text('Scroll infinite'),
             trailing: const Icon(Icons.arrow_circle_right),
           ),
           Divider(),
           ListTile(
             leading: const Icon(Icons.place),
-            title: Text('How are you from '),
-            subtitle: const Text('23-23-23 - New York'),
-            trailing: const Icon(Icons.arrow_circle_right),
-          ),
-          Divider(),
-          ListTile(
-            leading: const Icon(Icons.place),
-            title: Text('Place'),
-            subtitle: const Text('23-23-23 - Arizona'),
+            title: Text('Notifications', style: Theme.of(context).textTheme.headlineLarge,
+            ),
+            subtitle: const Text('Creation de notifications'),
             trailing: const Icon(Icons.arrow_circle_right),
           ),
         ],
