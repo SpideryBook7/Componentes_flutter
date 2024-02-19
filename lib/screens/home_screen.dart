@@ -6,10 +6,10 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(109, 87, 235, 255),
+      backgroundColor: Color.fromARGB(108, 208, 208, 208),
       appBar: AppBar(
         title: const Text('Componentes de flutter'),
-        backgroundColor: Colors.blue,
+        backgroundColor: const Color.fromARGB(229, 33, 149, 243),
       ),
       body: ListView(
         children: [
