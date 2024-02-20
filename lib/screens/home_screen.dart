@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
             leading: const Icon(Icons.input_rounded),
             title: Text(
               'Entradas ',
-              style: Theme.of(context).textTheme.headlineLarge,
+              style: Theme.of(context).textTheme.bodySmall,
             ),
             subtitle: const Text('Deferent widgets'),
             trailing: const Icon(Icons.arrow_circle_right),
@@ -27,7 +27,7 @@ class HomeScreen extends StatelessWidget {
             leading: const Icon(Icons.input_rounded),
             title: Text(
               'ListView.builder ',
-              style: Theme.of(context).textTheme.headlineLarge,
+              style: Theme.of(context).textTheme.bodySmall,
             ),
             subtitle: const Text('Scroll infinite'),
             trailing: const Icon(Icons.arrow_circle_right),
@@ -37,7 +37,7 @@ class HomeScreen extends StatelessWidget {
             leading: const Icon(Icons.input_rounded),
             title: Text(
               'Notifications',
-              style: Theme.of(context).textTheme.headlineLarge,
+              style: Theme.of(context).textTheme.bodySmall,
             ),
             subtitle: const Text('Creation de notifications'),
             trailing: const Icon(Icons.arrow_circle_right),
