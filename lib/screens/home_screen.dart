@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:practica3/screens/infinite_list_screen.dart';
+import 'package:practica3/screens/inputs_screen.dart';
+import 'package:practica3/screens/notifications_screen.dart';
+import 'package:practica3/theme/app_theme.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -6,42 +10,75 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(108, 208, 208, 208),
+      backgroundColor: AppTheme.lightColor,
       appBar: AppBar(
         title: const Text('Componentes de flutter'),
-        backgroundColor: const Color.fromARGB(229, 33, 149, 243),
+        backgroundColor: Color.fromARGB(217, 236, 255, 128),
       ),
       body: ListView(
         children: [
           ListTile(
-            leading: const Icon(Icons.input_rounded),
-            title: Text(
-              'Entradas ',
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-            subtitle: const Text('Deferent widgets'),
-            trailing: const Icon(Icons.arrow_circle_right),
-          ),
+              leading: const Icon(Icons.accessibility_new_sharp),
+              title: Text(
+                'Entradas',
+                style: AppTheme.lightTheme.textTheme.bodySmall,
+              ),
+              subtitle: Text(
+                'Diferentes widgets para entradas de flutter',
+                style: AppTheme.lightTheme.textTheme.bodySmall,
+              ),
+              trailing: const Icon(
+                Icons.accessibility_new_rounded,
+                color: AppTheme.lightColor,
+              ),
+              onTap: () {
+                final ruta1 = MaterialPageRoute(builder: (context) {
+                  return const InputScreen();
+                });
+                Navigator.push(context, ruta1);
+              }),
           const Divider(),
           ListTile(
-            leading: const Icon(Icons.input_rounded),
-            title: Text(
-              'ListView.builder ',
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-            subtitle: const Text('Scroll infinite'),
-            trailing: const Icon(Icons.arrow_circle_right),
-          ),
-          Divider(),
+              leading: const Icon(Icons.list_alt_rounded),
+              title: Text(
+                'ListView.builder',
+                style: AppTheme.lightTheme.textTheme.bodySmall,
+              ),
+              subtitle: Text(
+                'Scroll infinito',
+                style: AppTheme.lightTheme.textTheme.bodySmall,
+              ),
+              trailing: const Icon(
+                Icons.add_reaction_outlined,
+                color: Color.fromARGB(255, 252, 252, 252),
+              ),
+              onTap: () {
+                final ruta2 = MaterialPageRoute(builder: (context) {
+                  return const InfiniteScreen();
+                });
+                Navigator.push(context, ruta2);
+              }),
+          const Divider(),
           ListTile(
-            leading: const Icon(Icons.input_rounded),
-            title: Text(
-              'Notifications',
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-            subtitle: const Text('Creation de notifications'),
-            trailing: const Icon(Icons.arrow_circle_right),
-          ),
+              leading: const Icon(Icons.notification_add),
+              title: Text(
+                'Notificaciones',
+                style: AppTheme.lightTheme.textTheme.bodySmall,
+              ),
+              subtitle: Text(
+                'Creacion de notificaciones',
+                style: AppTheme.lightTheme.textTheme.bodySmall,
+              ),
+              trailing: const Icon(
+                Icons.assist_walker_sharp,
+                color: AppTheme.lightColor,
+              ),
+              onTap: () {
+                final ruta3 = MaterialPageRoute(builder: (context) {
+                  return const NotificationsScreen();
+                });
+                Navigator.push(context, ruta3);
+              }),
         ],
       ),
     );
