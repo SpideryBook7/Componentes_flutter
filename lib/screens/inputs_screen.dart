@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practica3/theme/app_theme.dart';
 
 class InputScreen extends StatefulWidget {
   const InputScreen({super.key});
@@ -10,8 +11,29 @@ class InputScreen extends StatefulWidget {
 class _InputScreenState extends State<InputScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Entradas'),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          'Entradas',
+          style: AppTheme.lightTheme.textTheme.headlineLarge,
+        ),
+        const Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            ElevatedButton(
+              onPressed: null,
+              child: Text('Ir a data screen'),
+            ),
+            ElevatedButton(
+              onPressed: null,
+              child: Text(
+                'Regresar',
+              ),
+            ),
+          ],
+        )
+      ],
     );
   }
 }
