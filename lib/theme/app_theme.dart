@@ -10,8 +10,28 @@ class AppTheme {
   // Declaracion del thema light
   static final ThemeData lightTheme = ThemeData.light().copyWith(
     scaffoldBackgroundColor: blackColor,
-    appBarTheme: const AppBarTheme(
-      color: Color.fromARGB(3, 3, 3, 3),
+    appBarTheme: AppBarTheme(
+      color: blackColor,
+      titleTextStyle: GoogleFonts.adamina(
+        color: blackColor,
+        fontSize: 28.5,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    iconTheme: const IconThemeData(
+      color: blackColor,
+      size: 29.0,
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(accentcolor),
+        foregroundColor: MaterialStateProperty.all(
+          blackColor,
+        ),
+        textStyle: MaterialStateProperty.all(
+          GoogleFonts.adamina(color: blackColor),
+        ),
+      ),
     ),
     textTheme: TextTheme(
       headlineLarge: GoogleFonts.adamina(
@@ -24,7 +44,7 @@ class AppTheme {
         decorationThickness: 3.0,
       ),
       bodySmall: GoogleFonts.mPlus1(
-        color: accentcolor,
+        color: blackColor,
         fontSize: 19.0,
         fontWeight: FontWeight.bold,
         fontStyle: FontStyle.italic,
