@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 class AppTheme {
   // Declaracion de color
   static const lightColor = Color.fromARGB(255, 255, 255, 255);
+  static const lightColorBtn = Color.fromARGB(158, 255, 255, 255);
   static const blackColor = Color.fromARGB(198, 3, 3, 3);
   static const accentcolor = Color.fromARGB(197, 184, 39, 228);
 
@@ -24,7 +25,7 @@ class AppTheme {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(accentcolor),
+        backgroundColor: MaterialStateProperty.all(lightColorBtn),
         foregroundColor: MaterialStateProperty.all(
           blackColor,
         ),
@@ -34,14 +35,12 @@ class AppTheme {
       ),
     ),
     textTheme: TextTheme(
-      headlineLarge: GoogleFonts.adamina(
+      headlineMedium: GoogleFonts.adamina(
         color: blackColor,
-        fontSize: 25.0,
+        fontSize: 23.0,
         fontWeight: FontWeight.w600,
-        decoration: TextDecoration.underline,
-        decorationColor: Color.fromARGB(255, 0, 200, 255),
         decorationStyle: TextDecorationStyle.dotted,
-        decorationThickness: 3.0,
+        decorationThickness: 1.5,
       ),
       bodySmall: GoogleFonts.mPlus1(
         color: blackColor,
