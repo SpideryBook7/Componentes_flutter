@@ -42,7 +42,7 @@ class AppTheme {
         decorationStyle: TextDecorationStyle.dotted,
         decorationThickness: 1.5,
       ),
-      bodySmall: GoogleFonts.mPlus1(
+      bodyMedium: GoogleFonts.mPlus1(
         color: blackColor,
         fontSize: 19.0,
         fontWeight: FontWeight.bold,

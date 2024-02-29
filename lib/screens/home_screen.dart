@@ -29,11 +29,17 @@ class HomeScreen extends StatelessWidget {
               subtitle: Text(
                 'Diferentes widgets para entradas de flutter',
                 style: AppTheme.lightTheme.textTheme.bodySmall,
-              ),
-              trailing: const Icon(
-                Icons.accessibility_new_rounded,
-                color: AppTheme.lightColor,
-              ),
+               ),
+              // trailing: const CircularProgressIndicator(
+              //   strokeWidth: 13.0,
+              //   value: 0.46,
+              //   color: AppTheme.accentcolor,
+              //   backgroundColor: Colors.lightBlueAccent,
+              // ),
+              // trailing: const Icon(
+              //   Icons.accessibility_new_rounded,
+              //   color: AppTheme.lightColor,
+              // ),
               onTap: () {
                 final ruta1 = MaterialPageRoute(builder: (context) {
                   return const InputScreen();

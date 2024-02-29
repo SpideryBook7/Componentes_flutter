@@ -12,37 +12,58 @@ class InputScreen extends StatefulWidget {
 class _InputScreenState extends State<InputScreen> {
   bool valueSwitch = false;
   double valueSlider = 0.0;
+  int selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppTheme.lightColor,
       appBar: AppBar(title: const Text('Entradas')),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text(
-            'Entradas',
-            style: AppTheme.lightTheme.textTheme.headlineLarge,
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text(
+              'Entradas',
+              style: AppTheme.lightTheme.textTheme.headlineLarge,
+            ),
+            entradaTexto(),
+            entradaSwitch(),
+            entradaSlider(),
+            ElevatedButton(
+              onPressed: null,
+              child: Text(
+                'Regresar',
+              ),
+            ),
+            ElevatedButton(
+              onPressed: null,
+              child: Text('Ir a data screen'),
+            )
+          ],
+        ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: selectedIndex,
+        backgroundColor: AppTheme.lightColor,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_filled),
+            label: "Ingresar",
           ),
-          entradaTexto(),
-          entradaSwitch(),
-          entradaSlider(),
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              ElevatedButton(
-                onPressed: null,
-                child: Text(
-                  'Regresar',
-                ),
-              ),
-              ElevatedButton(
-                onPressed: null,
-                child: Text('Ir a data screen'),
-              ),
-            ],
-          )
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            label: "Datos",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.exit_to_app,
+            color: AppTheme.blackColor,
+            ),
+            label: "Salir",
+          ),
         ],
+        unselectedLabelStyle: AppTheme.lightTheme.textTheme.bodyMedium,
       ),
     );
   }
@@ -59,6 +80,7 @@ class _InputScreenState extends State<InputScreen> {
 
   Row entradaSwitch() {
     return Row(children: <Widget>[
+      const FlutterLogo(),
       Text(
         'Te gusta flutter?',
         style: AppTheme.lightTheme.textTheme.headlineLarge,
