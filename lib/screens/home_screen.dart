@@ -3,6 +3,7 @@ import 'package:practica3/screens/infinite_list_screen.dart';
 import 'package:practica3/screens/inputs_screen.dart';
 import 'package:practica3/screens/notifications_screen.dart';
 import 'package:practica3/theme/app_theme.dart';
+import 'package:practica3/screens/imagenes_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -29,7 +30,7 @@ class HomeScreen extends StatelessWidget {
               subtitle: Text(
                 'Diferentes widgets para entradas de flutter',
                 style: AppTheme.lightTheme.textTheme.bodySmall,
-               ),
+              ),
               // trailing: const CircularProgressIndicator(
               //   strokeWidth: 13.0,
               //   value: 0.46,
@@ -93,6 +94,30 @@ class HomeScreen extends StatelessWidget {
                   return const NotificationsScreen();
                 });
                 Navigator.push(context, ruta3);
+              }),
+          const Divider(),
+          ListTile(
+              leading: IconTheme(
+                data: AppTheme.lightTheme.iconTheme,
+                child: Icon(Icons.image),
+              ),
+              title: Text(
+                'Imagenes',
+                style: AppTheme.lightTheme.textTheme.headlineLarge,
+              ),
+              subtitle: Text(
+                'Widgets de imaegenes',
+                style: AppTheme.lightTheme.textTheme.bodySmall,
+              ),
+              trailing: IconTheme(
+                child: const Icon(Icons.arrow_circle_right),
+                data: AppTheme.lightTheme.iconTheme,
+              ),
+              onTap: () {
+                final ruta4 = MaterialPageRoute(builder: (context) {
+                  return const imagesScreen();
+                });
+                Navigator.push(context, ruta4);
               }),
         ],
       ),
