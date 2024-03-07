@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:practica3/screens/home_screen.dart';
+import 'package:practica3/screens/imagenes_screen.dart';
+import 'package:practica3/screens/infinite_list_screen.dart';
+import 'package:practica3/screens/notifications_screen.dart';
 import 'package:practica3/theme/app_theme.dart';
 
 class InputScreen extends StatefulWidget {
@@ -18,10 +22,34 @@ class _InputScreenState extends State<InputScreen> {
   int selectedIndex = 0;
   int selectedRadio = 0;
 
+  openScreen(int index) {
+    setState(() {
+      MaterialPageRoute ruta =
+          MaterialPageRoute(builder: (context) => const HomeScreen());
+      switch (index) {
+        case 0:
+          MaterialPageRoute(builder: (context) => HomeScreen());
+          break;
+        case 1:
+          MaterialPageRoute(builder: (context) => InfiniteScreen());
+          break;
+        case 2:
+          MaterialPageRoute(builder: (context) => NotificationsScreen());
+          break;
+        case 3:
+          MaterialPageRoute(builder: (context) => ImagesScreen());
+          break;
+      }
+      selectedIndex = index;
+      print('selectedIndex = $selectedIndex');
+      Navigator.push(context, ruta);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.lightColor,
+      backgroundColor: Colors.white,
       appBar: AppBar(title: const Text('Entradas')),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -43,18 +71,40 @@ class _InputScreenState extends State<InputScreen> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,
         backgroundColor: AppTheme.lightColor,
+        unselectedItemColor: AppTheme.lightColor,
+        onTap: (index) => openScreen(index),
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_filled),
-            label: "Ingresar",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            label: "Datos",
+            icon: Icon(
+              Icons.home,
+              color: AppTheme.blackColor,
+            ),
+            label: "Inicio",
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.exit_to_app,
+              Icons.list,
+              color: AppTheme.blackColor,
+            ),
+            label: "Lista",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.notification_add,
+              color: AppTheme.blackColor,
+            ),
+            label: "Notificaciones",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.image,
+              color: AppTheme.blackColor,
+            ),
+            label: "Imagenes",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.back_hand,
               color: AppTheme.blackColor,
             ),
             label: "Salir",
