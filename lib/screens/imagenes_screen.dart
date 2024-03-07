@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practica3/theme/app_theme.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class ImagesScreen extends StatefulWidget {
   const ImagesScreen({super.key});
@@ -11,7 +12,7 @@ class ImagesScreen extends StatefulWidget {
 class _ImagesScreenState extends State<ImagesScreen> {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       appBar: AppBar(
         title: Text(
           'Imagenes',
@@ -19,7 +20,7 @@ class _ImagesScreenState extends State<ImagesScreen> {
         ),
       ),
       body: ListView(
-        children:  [
+        children: [
           imageCard(),
           imageWeb(),
         ],
@@ -27,36 +28,42 @@ class _ImagesScreenState extends State<ImagesScreen> {
     );
   }
 
-  Card imageCard(){
+  Card imageCard() {
     return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30) 
-      ),
-      margin: const EdgeInsets.all(20),
-      elevation: 10,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(30),
-        child: Column(
-        children: [
-          const Image(
-              image: AssetImage('assets/imgs/curry1.jpeg')
-            ),
-            Container(
-              padding: const EdgeInsets.all(10),
-              child: Text(' ❤️C U R R Y❤️',
-              style: AppTheme.lightTheme.textTheme.bodySmall,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+        margin: const EdgeInsets.all(20),
+        elevation: 10,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(30),
+          child: Column(
+            children: [
+              const Image(image: AssetImage('assets/imagen1.jpg')),
+              Container(
+                padding: const EdgeInsets.all(10),
+                child: Text(
+                  ' ❤️FC❤️',
+                  style: AppTheme.lightTheme.textTheme.bodySmall,
+                ),
               ),
-            ),
-          ],
-        ),
-      ) 
-    );
+            ],
+          ),
+        ));
   }
-  Widget imageWeb(){
-    return Center(
-      child: Image.network(
-        'https://i.pinimg.com/originals/82/9a/82/829a82bd6f39f7456c6f4cc2dacc27f6.jpg'
+
+  Stack imageWeb() {
+    return Stack(children: <Widget>[
+      const Center(
+        child: CircularProgressIndicator(),
       ),
-    );
+      SizedBox(
+          height: 450,
+          width: 450,
+          child: FadeInImage.memoryNetwork(
+              placeholder: kTransparentImage,
+              image:
+                  'https://newsroom.plusatlas.com/uploads/medium/000/001/126/portada_PlusAtlas-33252087-0549-4a7b-aaf6-a2bedce7207f.jpg')
+          // Image.network(), //Para mostrar imagen de web
+          ),
+    ]);
   }
 }
