@@ -1,13 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/services.dart';
+import 'package:practica3/screens/data_screen.dart';
 import 'package:practica3/screens/home_screen.dart';
 import 'package:practica3/screens/imagenes_screen.dart';
 import 'package:practica3/screens/infinite_list_screen.dart';
 import 'package:practica3/screens/notifications_screen.dart';
 import 'package:practica3/theme/app_theme.dart';
 
+class UserData {
+  String nombre = '';
+  bool gustaFlutter = false;
+  double gustaFlutterValue = 0.0;
+  int prefieresMovil = 0;
+
+  List<dynamic> opciones;
+
+  UserData() : opciones = List.filled(3, false);
+}
+
 class InputScreen extends StatefulWidget {
-  const InputScreen({super.key});
+  const InputScreen({Key? key}) : super(key: key);
 
   @override
   State<InputScreen> createState() => _InputScreenState();
@@ -21,6 +33,7 @@ class _InputScreenState extends State<InputScreen> {
   double valueSlider = 0.0;
   int selectedIndex = 0;
   int selectedRadio = 0;
+  UserData userData = UserData();
 
   openScreen(int index) {
     setState(() {
@@ -31,7 +44,7 @@ class _InputScreenState extends State<InputScreen> {
           MaterialPageRoute(builder: (context) => HomeScreen());
           break;
         case 1:
-          MaterialPageRoute(builder: (context) => InfiniteScreen());
+          MaterialPageRoute(builder: (context) => InfiniteListScreen());
           break;
         case 2:
           MaterialPageRoute(builder: (context) => NotificationsScreen());
@@ -39,6 +52,8 @@ class _InputScreenState extends State<InputScreen> {
         case 3:
           MaterialPageRoute(builder: (context) => ImagesScreen());
           break;
+        case 4:
+          SystemChannels.platform.invokeMethod('SystemNavigator.pop');
       }
       selectedIndex = index;
       print('selectedIndex = $selectedIndex');
@@ -65,6 +80,18 @@ class _InputScreenState extends State<InputScreen> {
               style: AppTheme.lightTheme.textTheme.headlineLarge,
             ),
             entradaCheck(),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => DataScreen(userData: userData)),
+                );
+              },
+              child: const Text(
+                'Guardar',
+              ),
+            ),
           ],
         ),
       ),
@@ -117,10 +144,12 @@ class _InputScreenState extends State<InputScreen> {
 
   TextField entradaTexto() {
     return TextField(
+      onChanged: (value) {
+        userData.nombre = value;
+      },
       decoration: InputDecoration(
         border: const UnderlineInputBorder(),
         labelText: 'Escribe tu nombre',
-        labelStyle: AppTheme.lightTheme.textTheme.headlineLarge,
       ),
     );
   }
@@ -141,6 +170,7 @@ class _InputScreenState extends State<InputScreen> {
         onChanged: (value) {
           setState(() {
             valueSwitch = value;
+            userData.gustaFlutter = value;
             print('Estado del switch: $valueSwitch');
           });
         },
@@ -156,18 +186,18 @@ class _InputScreenState extends State<InputScreen> {
           style: AppTheme.lightTheme.textTheme.headlineLarge,
         ),
         Slider(
-            min: 0.0,
-            max: 10.0,
-            value: valueSlider,
-            inactiveColor: Color.fromARGB(159, 239, 239, 239),
-            thumbColor: AppTheme.accentcolor,
-            divisions: 3,
-            label: '${valueSlider.round()}',
-            onChanged: (value) {
-              setState(() {
-                valueSlider = value;
-              });
-            }),
+          min: 0.0,
+          max: 10.0,
+          value: valueSlider,
+          divisions: 10,
+          label: '${valueSlider.round()}',
+          onChanged: (value) {
+            setState(() {
+              valueSlider = value;
+              userData.gustaFlutterValue = value;
+            });
+          },
+        ),
       ],
     );
   }
@@ -176,7 +206,7 @@ class _InputScreenState extends State<InputScreen> {
     return Column(
       children: [
         Text(
-          "Que prefieres usarpara desarrollo movil?",
+          "Que prefieres usar para desarrollo movil?",
           style: AppTheme.lightTheme.textTheme.headlineLarge,
         ),
         ListTile(
@@ -184,18 +214,15 @@ class _InputScreenState extends State<InputScreen> {
             'Kotlin',
             style: AppTheme.lightTheme.textTheme.headlineLarge,
           ),
-          leading: Transform.scale(
-            scale: 1.0,
-            child: Radio(
-              value: 1,
-              groupValue: selectedRadio,
-              onChanged: (value) {
-                setState(() {
-                  selectedRadio = value!;
-                  print('option selected: $selectedRadio');
-                });
-              },
-            ),
+          leading: Radio(
+            value: 1,
+            groupValue: selectedRadio,
+            onChanged: (value) {
+              setState(() {
+                selectedRadio = value as int;
+                userData.prefieresMovil = value as int;
+              });
+            },
           ),
         ),
         ListTile(
@@ -203,18 +230,15 @@ class _InputScreenState extends State<InputScreen> {
             'Flutter',
             style: AppTheme.lightTheme.textTheme.headlineLarge,
           ),
-          leading: Transform.scale(
-            scale: 1.0,
-            child: Radio(
-              value: 2,
-              groupValue: selectedRadio,
-              onChanged: (value) {
-                setState(() {
-                  selectedRadio = value!;
-                  print('option selected: $selectedRadio');
-                });
-              },
-            ),
+          leading: Radio(
+            value: 2,
+            groupValue: selectedRadio,
+            onChanged: (value) {
+              setState(() {
+                selectedRadio = value as int;
+                userData.prefieresMovil = value as int;
+              });
+            },
           ),
         )
       ],
@@ -234,6 +258,7 @@ class _InputScreenState extends State<InputScreen> {
           onChanged: (value) {
             setState(() {
               isChecked1 = value!;
+              userData.opciones[0] = value!;
               print('Valor de navegador: $isChecked1');
             });
           },
@@ -243,13 +268,15 @@ class _InputScreenState extends State<InputScreen> {
           style: AppTheme.lightTheme.textTheme.headlineMedium,
         ),
         Checkbox(
-            value: isChecked2,
-            onChanged: (value) {
-              setState(() {
-                isChecked2 = value!;
-                print('Valor de emulador: $isChecked2');
-              });
-            }),
+          value: isChecked2,
+          onChanged: (value) {
+            setState(() {
+              isChecked2 = value!;
+              userData.opciones[1] = value!;
+              print('Valor de emulador: $isChecked2');
+            });
+          },
+        ),
         Text(
           'Smartphone',
           style: AppTheme.lightTheme.textTheme.headlineSmall,
